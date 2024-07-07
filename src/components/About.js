@@ -2,39 +2,20 @@ import React, { useState } from 'react';
 
 const About = (props) => {
     
-    const [mystyle, setMystyle] = useState(
+    const [mystyle] = useState(
         {
             color: 'black',
-            backgroundColor: 'white'
+            // backgroundColor: 'white'
         }
     );
-    const [btnText, setBtnText] = useState("Dark Mode")
-
-    const togglebtn = () => {
-        if(mystyle.color === "black"){
-            setMystyle({
-                color: 'white',
-                backgroundColor: 'black',
-                border: '1px solid white'
-            })
-            setBtnText("Light Mode")
-        }
-        else {
-            setMystyle({
-                color: 'black',
-               backgroundColor: 'white',
-           })
-           setBtnText("Dark Mode")
-        }
-    }
 
     return (
-        <div className='container p-3' style={mystyle}>
+        <div className='container p-3' style={mystyle} >
             <h1 className="my-3">About Us </h1>
-            <div className="accordion" id="accordionExample" >
-                <div className="accordion-item" style={mystyle}>
+            <div className="accordion" id="accordionExample" style={mystyle}>
+                <div className="accordion-item" >
                     <h2 className="accordion-header">
-                        <button className="accordion-button" type="button" style={mystyle} data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button className="accordion-button" type="button"  data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Accordion Item #1
                         </button>
                     </h2>
@@ -44,9 +25,9 @@ const About = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="accordion-item" style={mystyle}>
+                <div className="accordion-item" >
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button className="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Accordion Item #2
                         </button>
                     </h2>
@@ -56,9 +37,9 @@ const About = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="accordion-item" style={mystyle}>
+                <div className="accordion-item" >
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <button className="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Accordion Item #3
                         </button>
                     </h2>
@@ -70,7 +51,7 @@ const About = (props) => {
                 </div>
             </div>
             <div className="container my-3">
-                <button onClick={togglebtn} type="button" className="btn btn-primary">{btnText}</button>
+                {/* <button type="button" className="btn btn-primary">{btnText}</button> */}
             </div>
         </div>
     );

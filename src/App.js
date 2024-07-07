@@ -34,10 +34,10 @@ function App() {
     <Router>
       <Navbar title="TextUtils" mode={mode} aboutText="About Us" toggleMode={handleToggle} />
       <Alert alert={alert} />
-      <div className="container my-5">
+      <div className="container my-4">
         <Routes>
           <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter the analysis" />} />
-          <Route path="/about" element={<About />} />
+          {/* <Route path="/about" element={<About />} /> */}
         </Routes>
       </div>
     </Router>

@@ -11,14 +11,25 @@ const TextForm = (props) => {
 
     const handerUpClick = () => {
         let newText = text.toUpperCase();
-        setText(newText);
-        props.showAlert("Convert to Uppercase", "success");
+        if (newText.length === 0) {
+            props.showAlert("Write something to uppercase text", "danger");
+        }
+        else {
+            setText(newText);
+            props.showAlert("Convert to Uppercase", "success");
+        }
     }
 
     const handerLoClick = () => {
         let newText = text.toLowerCase()
-        setText(newText);
-        props.showAlert("Convert to Lowercase", "success");
+
+        if (newText.length === 0) {
+            props.showAlert("Write something to lowercase", "danger");
+        }
+        else {
+            setText(newText);
+            props.showAlert("Convert to Lowercase", "success");
+        }
     }
 
     const handerClear = () => {
@@ -27,12 +38,8 @@ const TextForm = (props) => {
         props.showAlert("Clear text", "success");
     }
 
-    // const copyToClipboard = () => {
-    //     copy(text);
-    // }
     const copyToClipboard = () => {
         let text = document.getElementById("myBox");
-        
         if (text.value.trim() === "") {
             props.showAlert("Text something to copy text", "danger");
         }
@@ -63,7 +70,7 @@ const TextForm = (props) => {
             </div>
             <div className="container my-5">
                 <h2>Your text summary</h2>
-                <p>{text.split(" ").filter((elements)=>{ return elements.length!==0}).length} <b>words</b> and {text.length} <b>characters</b></p>
+                <p>{text.split(" ").filter((elements) => { return elements.length !== 0 }).length} <b>words</b> and {text.length} <b>characters</b></p>
                 <p>{0.008 * text.split(" ").length} <b>Mintues reads</b></p>
                 <h2>Preview</h2>
                 <p>{text.length > 0 ? text : "Enter something in above textarea."}</p>

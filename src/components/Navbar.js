@@ -16,12 +16,11 @@ const Navbar = (props) => {
                             <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about">{props.aboutText}</Link>
+                            {/* <Link className="nav-link" to="/about">{props.aboutText}</Link> */}
                         </li>
                     </ul>
-                    <div className={`form-check form-switch mx-3 text-${props.mode === 'light' ? 'dark' : 'light'}`}>
-                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
+                    <div className='mx-5'>
+                        <i onClick={props.toggleMode} className={`fs-5 bi ${props.mode === 'light' ? 'bi-brightness-high-fill' : 'bi-moon-stars-fill'}`}></i>
                     </div>
                 </div>
             </div>
