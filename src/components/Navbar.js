@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = (props) => {
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
-            <div className="container-fluid">
+            <div className="container">
                 <Link className="navbar-brand" to="/">{props.title}</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@ const Navbar = (props) => {
                             {/* <Link className="nav-link" to="/about">{props.aboutText}</Link> */}
                         </li>
                     </ul>
-                    <div className='mx-5'>
+                    <div className=''>
                         <i onClick={props.toggleMode} className={`fs-5 bi ${props.mode === 'light' ? 'bi-brightness-high-fill' : 'bi-moon-stars-fill'}`}></i>
                     </div>
                 </div>
