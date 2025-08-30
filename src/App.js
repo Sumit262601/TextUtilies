@@ -1,44 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-import Alert from './components/Alert'; // Ensure the correct path is used
 import About from './components/About';
 
 function App() {
-  const [mode, setMode] = useState("light");
-  const [alert, setAlert] = useState(null);
+  // Initialize mode from localStorage or default to light
+  const [mode, setMode] = useState(() => {
+    const savedMode = localStorage.getItem('theme-mode');
+    return savedMode || 'light';
+  });
 
-  const showAlert = (message, type) => {
-    setAlert({ msg: message, type: type });
-    setTimeout(() => setAlert(null), 2000);
-  };
+  // Apply theme to body on mount and theme change
+  useEffect(() => {
+    document.body.className = mode === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', mode);
+    // Save mode to localStorage whenever it changes
+    localStorage.setItem('theme-mode', mode);
+  }, [mode]);
 
   const handleToggle = () => {
-    if (mode === 'light') {
-      setMode('dark');
-      document.body.style.backgroundColor = "#316e69";
-      document.body.style.color = "white";
-      showAlert("Dark Mode enabled", "success");
-      document.title = "TextUtils - Dark Mode";
-    } else {
-      setMode('light');
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
-      showAlert("Light Mode enabled", "success");
-      document.title = "TextUtils - Light Mode";
-    }
+    const newMode = mode === 'light' ? 'dark' : 'light';
+    setMode(newMode);
+    document.title = `TextUtils - ${newMode === 'dark' ? 'Dark' : 'Light'} Mode`;
   };
 
   return (
     <Router>
-      <Navbar title="TextUtils" mode={mode} aboutText="About Us" toggleMode={handleToggle} />
-      <Alert alert={alert} />
-      <div className="container my-4">
-        <Routes>
-          <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter the analysis" />} />
-          {/* <Route path="/about" element={<About />} /> */}
-        </Routes>
+      <div className={`App ${mode}`}>
+        <Navbar
+          title="TextUtils"
+          mode={mode}
+          aboutText="About Us"
+          toggleMode={handleToggle}
+        />
+        <div className="min-h-screen bg-background">
+          <div className="container mx-auto px-4 py-8">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <TextForm
+                    heading="Text Analysis & Utilities"
+                    mode={mode}
+                  />
+                }
+              />
+              <Route
+                path="/about"
+                element={<About mode={mode} />}
+              />
+            </Routes>
+          </div>
+        </div>
+        <Toaster
+          position="top-right"
+          theme={mode}
+          richColors
+          closeButton
+        />
       </div>
     </Router>
   );
